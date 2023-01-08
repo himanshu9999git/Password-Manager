@@ -1,10 +1,14 @@
 import "./App.css";
 import React, { useState } from "react";
+import Axios from "axios";
 
 function App() {
   const [title, setTitle] = useState("");
   const [password, setPassword] = useState("");
 
+  const addPassword = () => {
+    Axios.post("http://localhost:3001/addPassword", { title: title, password: password });
+  };
   return (
     <div className="App">
       <div className="AddPassWords">
@@ -20,10 +24,9 @@ function App() {
           placeholder="Eg. password123"
           onChange={(event) => {
             setPassword(event.target.value);
-            console.log(password);
           }}
         />
-        <button className="btn">Add Password</button>
+        <button className="btn" onClick={addPassword}>Add Password</button>
       </div>
     </div>
   );
